@@ -14,9 +14,35 @@ let employeeArray = [
     { id: 3, firstName: 'kevin', lastName: 'Sm', jobTitle: 'ier', address: '400 Somewhere Lane' },
     { id: 4, firstName: 'Fran', lastName: 'mith', jobTitle: 'shier', address: '500 Somewhere Lane' },
     { id: 5, firstName: 'DLK', lastName: 'ith', jobTitle: 'ashier', address: '600 Somewhere Lane' }
-  ]
+//   ]
 
+
+  //1.
   employeeArray.forEach((obj) => {
-    // Using ES6 string templating, we can create an insert statement for each object
+    Using ES6 string templating, we can create an insert statement for each object
     db.run(`INSERT INTO employees VALUES (${obj.id}, '${obj.firstName}', '${obj.lastName}','${obj.jobTitle}','${obj.address}')`);
+  });
+
+//2. Write a statement to query the database and console.log() all employee records.
+db.all("SELECT * FROM employees", (err, allRows) => {
+    // allRows is an array containing each row from the query
+    allRows.forEach(each => {
+      console.log(each.id, each.first + ' ' + each.last, each.jobTitle, each.address);
+    });
+  });
+
+//3.
+db.all("SELECT * FROM employees", (err, allRows) => {
+    // allRows is an array containing each row from the query
+    allRows.forEach(each => {
+      console.log(each.jobTitle);
+    });
+  });
+
+  //4
+  db.all("SELECT * FROM employees", (err, allRows) => {
+    // allRows is an array containing each row from the query
+    allRows.forEach(each => {
+      console.log(each.first + ' ' + each.last, each.jobTitle);
+    });
   });
