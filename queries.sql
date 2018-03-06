@@ -26,18 +26,36 @@ INSERT INTO "Song" ("SongId", "Title", "SongLength", "ReleaseDate", "GenreId", "
  VALUES ("330303", "Hypnotized", "2", "2018", "HipHop", "4", "13213");
 
 -- Write a SELECT query that provides the song titles, album title, and artist name for all of the data you just entered in. Use the LEFT JOIN keyword sequence to connect the tables, and the WHERE keyword to filter the results to the album and artist you added. Here is some more info on joins that might help.
+INSERT INTO Song
+SELECT null, "Second Sight", 5768, 1986, g.GenreId, ar.ArtistId, al.AlbumId
+FROM Artist ar, Genre g, Album al
+WHERE ar.ArtistName = "The Model Citizens"
+and g.Label = "Rock"
+and al.Title = "Georgetown Station"	
 
 -- Write a SELECT statement to display how many songs exist for each album. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
+SELECT COUNT(song.SongId) "song count",album.title  Album
+FROM song
+Join album
+on song.albumid = album.albumid
+Group By album.Title
+ 
 
 -- Write a SELECT statement to display how many songs exist for each artist. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
-SELECT COUNT(song.SongId)
+SELECT COUNT(song.SongId) "song count",artist.ArtistName Name
 FROM song
-Group By song.ArtistId 
+Join artist
+on song.artistId = artist.artistid
+Group By artist.ArtistName
+ 
 
 -- Write a SELECT statement to display how many songs exist for each genre. You'll need to use the COUNT() function and the GROUP BY keyword sequence.
-SELECT COUNT(song.SongId)
+SELECT COUNT(song.genreId) "song count",genre.Label Genre
 FROM song
-Group By song.GenreId
+Join Genre
+on song.genreId = genre.genreId
+Group By genre.label
+ 
 
 -- Using MAX() function, write a select statement to find the album with the longest duration. The result should display the album title and the duration.
 SELECT

@@ -35,6 +35,14 @@ let employeeArray = [
 
 //2. Write a statement to query the database and console.log() all employee records.
 db.all("SELECT * FROM employees", (err, allRows) => {
+  
+  (err,data) =>{
+    if(err){
+      return console.log('Dang',err.toString());
+    }
+    console.log('no error');
+  }
+
     // allRows is an array containing each row from the query
     allRows.forEach(each => {
       console.log(each.id, each.first + ' ' + each.last, each.jobTitle, each.address);
